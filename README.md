@@ -1,4 +1,6 @@
-# vue3-prac
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ecfcf1ad-5e3b-46f6-a7e8-1f9e0968fdfb/deploy-status)](https://app.netlify.com/sites/nuxt-composition-api/deploys)
+
+# nuxt-composition-api
 
 ## Build Setup
 
