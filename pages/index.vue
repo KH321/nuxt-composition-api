@@ -3,28 +3,36 @@
     <div>
       your color scheme: {{ color }}
     </div>
-    <div>
-      {{ count }}
-      {{ x }}
-      {{ y }}
-    </div>
     <H1>title</H1>
+    <div>
+      <!-- {{ x }} -->
+      <!-- {{ y }} -->
+      {{ mouse }}
+    </div>
+    <div> 
+      <h1>count: {{ count }}</h1> 
+      <button @click="inc()">Increment</button> 
+      <button @click="dec()">Decrement</button> 
+      <button @click="inc(5)">Increment (+5)</button> 
+      <button @click="dec(5)">Decrement (-5)</button> 
+      <button @click="set(100)">Set (100)</button> 
+      <button @click="reset()">Reset</button> 
+    </div> 
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from '@vue/composition-api'
-import { useMouse, usePreferredColorScheme, useLocalStorage } from '@vueuse/core'
+import { useMouse, usePreferredColorScheme, useStorage, useCounter } from '@vueuse/core'
 
 export default defineComponent({
   setup() {
-    const state = reactive({
-      count: 0
-    })
+    const mouse = useStorage('mouse', useMouse())
+    const { count, inc, dec, set, reset } = useCounter() 
     return {
       color: usePreferredColorScheme(),
-      ...state,
-      ...useMouse()
+      mouse,
+      ...useCounter()
     }
   }
 })
