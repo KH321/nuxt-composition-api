@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <v-container>
     <div>your color scheme: {{ color }}</div>
     <H1>title</H1>
     <div>
@@ -9,38 +9,36 @@
     </div>
     <div>
       <h1>count: {{ count }}</h1>
-      <button @click="inc()">Increment</button>
-      <button @click="dec()">Decrement</button>
-      <button @click="inc(5)">Increment (+5)</button>
-      <button @click="dec(5)">Decrement (-5)</button>
-      <button @click="set(100)">Set (100)</button>
-      <button @click="reset()">Reset</button>
+      <v-btn small color="primary" rounded @click="inc()">Increment</v-btn>
+      <v-btn small color="primary" rounded @click="dec()">Decrement</v-btn>
+      <v-btn small color="primary" rounded @click="inc(5)">Increment (+5)</v-btn>
+      <v-btn small color="primary" rounded @click="dec(5)">Decrement (-5)</v-btn>
+      <v-btn small color="primary" rounded @click="set(100)">Set (100)</v-btn>
+      <v-btn small color="primary" rounded @click="reset()">Reset</v-btn>
+      <v-btn small color="primary" rounded @click="inc()">Increment</v-btn>
     </div>
-    <v-container>
-      <v-row justify="center">
-        <v-col cols="6">
-          <v-card>
-            <v-card-title>Hello, Vuetify!</v-card-title>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-  </div>
+    <v-row justify="center">
+      <v-col cols="6">
+        <v-card>
+          <v-card-title>Hello, Vuetify!</v-card-title>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "@vue/composition-api"
+import { defineComponent } from '@vue/composition-api'
 import {
   useMouse,
   usePreferredColorScheme,
   useStorage,
   useCounter
-} from "@vueuse/core"
+} from '@vueuse/core'
 
 export default defineComponent({
-  setup() {
-    const mouse = useStorage("mouse", useMouse())
-    const { count, inc, dec, set, reset } = useCounter()
+  setup () {
+    const mouse = useStorage('mouse', useMouse())
     return {
       color: usePreferredColorScheme(),
       mouse,
@@ -51,30 +49,5 @@ export default defineComponent({
 </script>
 
 <style>
-.container {
-  margin: 4rem;
-  min-height: 100vh;
-}
 
-.title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
 </style>
