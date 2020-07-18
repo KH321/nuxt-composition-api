@@ -19,6 +19,7 @@
     "@nuxtjs/vuetify": "^1.11.2",
     "@vue/composition-api": "^1.0.0-beta.2",
     "@vueuse/core": "^2.0.35",
+    "eslint-plugin-vue": "^6.2.2",
     "nuxt": "^2.13.0"
   },
   "devDependencies": {

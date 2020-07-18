@@ -35,7 +35,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    { src: '~/plugins/composition-api', ssr: false },
+    { src: '~/plugins/composition-api', ssr: false }
   ],
   /*
   ** Auto import components
