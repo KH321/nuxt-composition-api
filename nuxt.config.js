@@ -49,6 +49,10 @@ export default {
     '@nuxt/typescript-build',
     '@nuxtjs/vuetify'
   ],
+  vuetify: {
+    customVariables: ['~/assets/variables.scss'],
+    treeShake: true
+  },
   /*
   ** Nuxt.js modules
   */

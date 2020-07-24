@@ -15,7 +15,6 @@
       <v-btn small color="primary" rounded @click="dec(5)">Decrement (-5)</v-btn>
       <v-btn small color="primary" rounded @click="set(100)">Set (100)</v-btn>
       <v-btn small color="primary" rounded @click="reset()">Reset</v-btn>
-      <v-btn small color="primary" rounded @click="inc()">Increment</v-btn>
     </div>
     <v-row justify="center">
       <v-col cols="6">
