@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer app>
+    <v-navigation-drawer app color="primary" dark>
       <v-list-item>
         <v-list-item-title class="title">
           Application
