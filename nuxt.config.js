@@ -1,3 +1,7 @@
+// eslint-disable-next-line nuxt/no-cjs-in-config
+const webpack = require('webpack')
+// eslint-disable-next-line nuxt/no-cjs-in-config
+const MonacoEditorPlugin = require('monaco-editor-webpack-plugin')
 
 export default {
   /*
@@ -63,5 +67,17 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+    extend(config, { isClient }) {
+      // クライアントのバンドルの Webpack 設定のみを拡張する
+      if (isClient) {
+        config.devtool = 'source-map'
+      }
+      // eslint-disable-next-line no-new
+      config.plugins.push(
+        new MonacoEditorPlugin({
+          languages: ['css']
+        })
+      )
+    }
   }
 }

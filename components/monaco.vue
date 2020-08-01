@@ -1,18 +1,18 @@
 <template>
   <MonacoEditor
     ref="editor"
-    height="500"
-    language="css"
+    v-model="state.code"
+    class="editor"
     theme="vs-dark"
-    width="800"
+    :language="options.language"
     :options="options"
     @change="change"
   />
 </template>
 
 <script>
-import { defineComponent } from '@vue/composition-api'
-import MonacoEditor from 'monaco-editor-vue'
+import { defineComponent, reactive } from '@vue/composition-api'
+import MonacoEditor from 'vue-monaco'
 
 export default defineComponent({
   components: {
@@ -22,14 +22,26 @@ export default defineComponent({
     const change = (val) => {
       console.log(val)
     }
+    const state = reactive({
+      code: `.item {
+    flex: auto;
+}`
+    })
+    const language = 'css'
     return {
       change,
+      state,
       options: {
-        accessibilitySupport: 'off',
-        quickSuggestionsquickSuggestions: true,
-        showSnippets: true
+        language
       }
     }
   }
 })
 </script>
+
+<style>
+.editor {
+  width: 800px;
+  height: 600px;
+}
+</style>

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "d": "nuxt",
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",
     "start": "nuxt-ts start",
@@ -22,8 +23,10 @@
     "@vue/composition-api": "^1.0.0-beta.2",
     "@vueuse/core": "^2.0.35",
     "eslint-plugin-vue": "^6.2.2",
-    "monaco-editor-vue": "^1.0.10",
-    "nuxt": "^2.13.0"
+    "monaco-editor-webpack-plugin": "^1.9.0",
+    "nuxt": "^2.13.0",
+    "vue-monaco": "^1.2.1",
+    "webpack": "^4.44.1"
   },
   "devDependencies": {
     "@nuxt/typescript-build": "^1.0.3",
