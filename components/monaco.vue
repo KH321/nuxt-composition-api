@@ -1,25 +1,46 @@
 <template>
-  <MonacoEditor
-    ref="editor"
-    v-model="state.code"
-    class="editor"
-    theme="vs-dark"
-    :language="options.language"
-    :options="options"
-    @change="change"
-  />
+  <div
+    class="editor-container"
+    :style="bgColor"
+  >
+    <MonacoEditor
+      ref="editor"
+      v-model="state.code"
+      class="editor"
+      :theme=theme
+      :language="options.language"
+      :options="options"
+      @change="change"
+    />
+  </div>
 </template>
 
-<script>
-import { defineComponent, reactive } from '@vue/composition-api'
+<script lang="ts">
+import { defineComponent, reactive, computed, unref } from '@vue/composition-api'
 import MonacoEditor from 'vue-monaco'
+import { usePreferredColorScheme } from '@vueuse/core'
 
+enum ColorScheme {
+  dark = 'dark',
+  light = 'light'
+}
+enum vsScheme {
+  'vs-dark',
+  'vs'
+}
 export default defineComponent({
   components: {
     MonacoEditor
   },
   setup () {
-    const change = (val) => {
+    const color = usePreferredColorScheme()
+    const isDark = unref(computed(() => color.value === ColorScheme.dark))
+    const theme = computed(() => isDark ? 'vs-dark' : 'vs')
+    const bgColor = computed(() => ({
+      background: isDark ? '#1e1e1e' : 'white',
+      border: `1px solid ${isDark ? 'transparent' : '#eee'}`
+    }))
+    const change = (val: any) => {
       console.log(val)
     }
     const state = reactive({
@@ -31,17 +52,30 @@ export default defineComponent({
     return {
       change,
       state,
+      bgColor,
+      theme,
       options: {
-        language
+        minimap: {
+          enabled: false
+        },
+        language,
+        EditorLayoutInfo: {
+          height: 800,
+          width: 600
+        }
       }
     }
   }
 })
 </script>
 
-<style>
+<style lang="scss" scoped>
 .editor {
-  width: 800px;
-  height: 600px;
+  width: 100%;
+  height: 200px;
+  &-container {
+    padding: 10px 0;
+    border-radius: 6px;
+  }
 }
 </style>
