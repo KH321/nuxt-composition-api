@@ -7,9 +7,9 @@
       ref="editor"
       v-model="state.code"
       class="editor"
-      :theme=theme
       :language="options.language"
       :options="options"
+      :theme=theme
       @change="change"
     />
   </div>
@@ -24,10 +24,12 @@ enum ColorScheme {
   dark = 'dark',
   light = 'light'
 }
+
 enum vsScheme {
-  'vs-dark',
-  'vs'
+  dark = 'vs-dark',
+  light = 'vs'
 }
+
 export default defineComponent({
   components: {
     MonacoEditor
@@ -35,7 +37,7 @@ export default defineComponent({
   setup () {
     const color = usePreferredColorScheme()
     const isDark = unref(computed(() => color.value === ColorScheme.dark))
-    const theme = computed(() => isDark ? 'vs-dark' : 'vs')
+    const theme = computed(() => isDark ? vsScheme.dark : vsScheme.light)
     const bgColor = computed(() => ({
       background: isDark ? '#1e1e1e' : 'white',
       border: `1px solid ${isDark ? 'transparent' : '#eee'}`
@@ -73,6 +75,7 @@ export default defineComponent({
 .editor {
   width: 100%;
   height: 200px;
+
   &-container {
     padding: 10px 0;
     border-radius: 6px;
