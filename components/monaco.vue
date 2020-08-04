@@ -60,11 +60,7 @@ export default defineComponent({
         minimap: {
           enabled: false
         },
-        language,
-        EditorLayoutInfo: {
-          height: 800,
-          width: 600
-        }
+        language
       }
     }
   }
