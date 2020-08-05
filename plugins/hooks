@@ -1,0 +1,8 @@
+import Vue from 'vue'
+import { setupVM } from '~/hooks/setupVM'
+
+const hooksPlugin = () => {
+  setupVM(Vue)
+}
+
+export default hooksPlugin

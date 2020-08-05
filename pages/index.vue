@@ -9,12 +9,12 @@
     </div>
     <div>
       <h1>count: {{ count }}</h1>
-      <v-btn small color="primary" rounded @click="inc()">Increment</v-btn>
-      <v-btn small color="primary" rounded @click="dec()">Decrement</v-btn>
-      <v-btn small color="primary" rounded @click="inc(5)">Increment (+5)</v-btn>
-      <v-btn small color="primary" rounded @click="dec(5)">Decrement (-5)</v-btn>
-      <v-btn small color="primary" rounded @click="set(100)">Set (100)</v-btn>
-      <v-btn small color="primary" rounded @click="reset()">Reset</v-btn>
+      <v-btn color="primary" rounded small @click="inc()">Increment</v-btn>
+      <v-btn color="primary" rounded small @click="dec()">Decrement</v-btn>
+      <v-btn color="primary" rounded small @click="inc(5)">Increment (+5)</v-btn>
+      <v-btn color="primary" rounded small @click="dec(5)">Decrement (-5)</v-btn>
+      <v-btn color="primary" rounded small @click="set(100)">Set (100)</v-btn>
+      <v-btn color="primary" rounded small @click="reset()">Reset</v-btn>
     </div>
     <v-row justify="center">
       <v-col cols="6">
@@ -37,7 +37,8 @@ import {
 } from '@vueuse/core'
 
 export default defineComponent({
-  setup () {
+  setup (props, context) {
+    console.log(context)
     const mouse = useStorage('mouse', useMouse())
     return {
       color: usePreferredColorScheme(),
