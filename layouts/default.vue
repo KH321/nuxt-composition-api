@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer app color="primary" dark expand-on-hover="true" mini-variant="true">
+    <v-navigation-drawer app color="primary" dark :expand-on-hover="true" :mini-variant="true">
       <v-list-item>
         <v-list-item-title class="title">
           Application
@@ -34,9 +34,12 @@
 <script lang="ts">
 
 import { defineComponent } from '@vue/composition-api'
+import { getVM } from '~/hooks/setupVM'
 
 export default defineComponent({
   setup () {
+    const vm = getVM()
+    console.log(vm)
     const items = [
       { icon: 'home', title: 'Home' },
       { icon: 'app', title: 'app' }

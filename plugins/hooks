@@ -2,7 +2,11 @@ import Vue from 'vue'
 import { setupVM } from '~/hooks/setupVM'
 
 const hooksPlugin = () => {
-  setupVM(Vue)
+  setupVM(new Vue())
+  // Vue.mixin({
+  //   beforeCreate () {
+  //   }
+  // })
 }
 
 export default hooksPlugin

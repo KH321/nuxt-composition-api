@@ -15,7 +15,7 @@ export function getVM (): Vue {
 }
 
 export function setupVM (vm: Vue): void {
-  if (typeof vm.$options.setup === 'function') {
-    runtime.vm = vm
-  }
+  // if (typeof vm.$options.setup === 'function') {
+  runtime.vm = vm
+  // }
 }
