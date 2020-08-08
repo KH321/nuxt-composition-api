@@ -1,6 +1,30 @@
+<script lang="ts">
+
+import { defineComponent } from '@vue/composition-api'
+
+export default defineComponent({
+  setup () {
+    const items = [
+      { icon: 'home', title: 'Home' },
+      { icon: 'app', title: 'app' }
+    ]
+    return {
+      items,
+      window
+    }
+  }
+})
+</script>
+
 <template>
   <v-app>
-    <v-navigation-drawer app color="primary" dark :expand-on-hover="true" :mini-variant="true">
+    <v-navigation-drawer
+      app
+      color="primary"
+      dark
+      :expand-on-hover="!$vuetify.breakpoint.mobile"
+      :mini-variant="!$vuetify.breakpoint.mobile"
+    >
       <v-list-item>
         <v-list-item-title class="title">
           Application
@@ -25,30 +49,12 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
+    {{ window.console.log({$vuetify}) }}
     <v-main>
       <Nuxt />
     </v-main>
   </v-app>
 </template>
 
-<script lang="ts">
-
-import { defineComponent } from '@vue/composition-api'
-import { getVM } from '~/hooks/setupVM'
-
-export default defineComponent({
-  setup () {
-    const vm = getVM()
-    console.log(vm)
-    const items = [
-      { icon: 'home', title: 'Home' },
-      { icon: 'app', title: 'app' }
-    ]
-    return {
-      items
-    }
-  }
-})
-</script>
 <style>
 </style>

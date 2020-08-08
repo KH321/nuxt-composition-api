@@ -51,7 +51,7 @@ export default {
       src: '~/plugins/composition-api',
       ssr: false
     },
-    '~plugins/hooks'
+    '~plugins/hooks.ts'
   ],
   /*
   ** Auto import components
