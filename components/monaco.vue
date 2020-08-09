@@ -3,10 +3,11 @@
     class="editor-container"
     :style="bgColor"
   >
-    <MonacoEditor
+    <monaco-editor
       ref="editor"
       v-model="state.code"
       class="editor"
+      width="500"
       :language="options.language"
       :options="options"
       :theme=theme
@@ -25,10 +26,12 @@ enum ColorScheme {
   light = 'light'
 }
 
-enum vsScheme {
+enum VsScheme {
   dark = 'vs-dark',
   light = 'vs'
 }
+
+const Language = 'css'
 
 export default defineComponent({
   components: {
@@ -37,7 +40,7 @@ export default defineComponent({
   setup () {
     const color = usePreferredColorScheme()
     const isDark = unref(computed(() => color.value === ColorScheme.dark))
-    const theme = computed(() => isDark ? vsScheme.dark : vsScheme.light)
+    const theme = computed(() => isDark ? VsScheme.dark : VsScheme.light)
     const bgColor = computed(() => ({
       background: isDark ? '#1e1e1e' : 'white',
       border: `1px solid ${isDark ? 'transparent' : '#eee'}`
@@ -50,17 +53,17 @@ export default defineComponent({
     flex: auto;
 }`
     })
-    const language = 'css'
     return {
       change,
       state,
       bgColor,
       theme,
       options: {
+        automaticLayout: true,
         minimap: {
           enabled: false
         },
-        language
+        language: Language
       }
     }
   }
@@ -69,7 +72,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .editor {
-  width: 100%;
   height: 200px;
 
   &-container {

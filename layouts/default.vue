@@ -1,16 +1,19 @@
 <script lang="ts">
 
 import { defineComponent } from '@vue/composition-api'
+import { checkMobile } from '~/hooks/breakpoint.ts'
 
 export default defineComponent({
   setup () {
+    const isMobile = checkMobile()
     const items = [
       { icon: 'home', title: 'Home' },
       { icon: 'app', title: 'app' }
     ]
     return {
       items,
-      window
+      window,
+      isMobile
     }
   }
 })
@@ -19,11 +22,13 @@ export default defineComponent({
 <template>
   <v-app>
     <v-navigation-drawer
+      v-if="!isMobile"
       app
       color="primary"
       dark
-      :expand-on-hover="!$vuetify.breakpoint.mobile"
-      :mini-variant="!$vuetify.breakpoint.mobile"
+      mobile-breakpoint="960"
+      :expand-on-hover="$vuetify.breakpoint.smAndDown"
+      :mini-variant="$vuetify.breakpoint.smAndDown"
     >
       <v-list-item>
         <v-list-item-title class="title">
@@ -51,6 +56,14 @@ export default defineComponent({
     </v-navigation-drawer>
     {{ window.console.log({$vuetify}) }}
     <v-main>
+      <v-app-bar
+        v-if="isMobile"
+        color="deep-purple accent-4"
+        dark
+        dense
+      >
+        <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      </v-app-bar>
       <Nuxt />
     </v-main>
   </v-app>
