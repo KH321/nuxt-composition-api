@@ -1,6 +1,5 @@
 <script lang="ts">
-
-import { defineComponent } from '@vue/composition-api'
+import { computed, defineComponent, reactive, ref, unref, watch } from '@vue/composition-api'
 import { checkMobile } from '~/hooks/breakpoint.ts'
 
 export default defineComponent({
@@ -10,10 +9,27 @@ export default defineComponent({
       { icon: 'home', title: 'Home' },
       { icon: 'app', title: 'app' }
     ]
+    const drawer = reactive({
+      mini: false,
+      toggleShow: false
+    })
+    const showDrawer = computed({
+      get: () => !isMobile.value ? true : isMobile.value && unref(drawer.toggleShow),
+      set: () => {}
+    })
+    watch(
+      isMobile,
+      (isMobile, prevIsMobile) => {
+        if (!prevIsMobile && isMobile) {
+          drawer.toggleShow = false
+        }
+      }
+    )
     return {
+      drawer,
       items,
-      window,
-      isMobile
+      isMobile,
+      showDrawer
     }
   }
 })
@@ -22,19 +38,19 @@ export default defineComponent({
 <template>
   <v-app>
     <v-navigation-drawer
-      v-if="!isMobile"
+      v-model="showDrawer"
       app
       color="primary"
       dark
       mobile-breakpoint="960"
-      :expand-on-hover="$vuetify.breakpoint.smAndDown"
-      :mini-variant="$vuetify.breakpoint.smAndDown"
+      :mini-variant="drawer.mini"
+      :temporary="isMobile && showDrawer"
     >
       <v-list-item>
         <v-list-item-title class="title">
           Application
         </v-list-item-title>
-        <v-btn icon>
+        <v-btn icon @click="drawer.mini = !drawer.mini">
           <v-icon>mdi-chevron-left</v-icon>
         </v-btn>
       </v-list-item>
@@ -44,7 +60,7 @@ export default defineComponent({
           :key="item.title"
           link
         >
-          <v-list-item-icon>
+          <v-list-item-icon @click="drawer.mini && (drawer.mini = !drawer.mini)">
             <v-icon>mdi-arrow-left</v-icon>
           </v-list-item-icon>
 
@@ -54,7 +70,6 @@ export default defineComponent({
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    {{ window.console.log({$vuetify}) }}
     <v-main>
       <v-app-bar
         v-if="isMobile"
@@ -62,7 +77,9 @@ export default defineComponent({
         dark
         dense
       >
-        <v-app-bar-nav-icon></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon
+          @click="drawer.toggleShow = !drawer.toggleShow"
+        />
       </v-app-bar>
       <Nuxt />
     </v-main>
