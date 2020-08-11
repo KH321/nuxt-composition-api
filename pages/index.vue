@@ -3,8 +3,6 @@
     <div>your color scheme: {{ color }}</div>
     <H1>title</H1>
     <div>
-      <!-- {{ x }} -->
-      <!-- {{ y }} -->
       {{ mouse }}
     </div>
     <div>
@@ -37,8 +35,7 @@ import {
 } from '@vueuse/core'
 
 export default defineComponent({
-  setup (props, context) {
-    console.log(context)
+  setup () {
     const mouse = useStorage('mouse', useMouse())
     return {
       color: usePreferredColorScheme(),

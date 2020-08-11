@@ -1,21 +1,3 @@
-<template>
-  <div
-    class="editor-container"
-    :style="bgColor"
-  >
-    <monaco-editor
-      ref="editor"
-      v-model="state.code"
-      class="editor"
-      width="500"
-      :language="options.language"
-      :options="options"
-      :theme=theme
-      @change="change"
-    />
-  </div>
-</template>
-
 <script lang="ts">
 import { defineComponent, reactive, computed, unref } from '@vue/composition-api'
 import MonacoEditor from 'vue-monaco'
@@ -69,6 +51,24 @@ export default defineComponent({
   }
 })
 </script>
+
+<template>
+  <div
+    class="editor-container"
+    :style="bgColor"
+  >
+    <monaco-editor
+      ref="editor"
+      v-model="state.code"
+      class="editor"
+      width="500"
+      :language="options.language"
+      :options="options"
+      :theme=theme
+      @change="change"
+    />
+  </div>
+</template>
 
 <style lang="scss" scoped>
 .editor {

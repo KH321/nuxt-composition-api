@@ -1,5 +1,5 @@
 <script lang="ts">
-import { computed, defineComponent, reactive, ref, unref, watch } from '@vue/composition-api'
+import { computed, defineComponent, reactive, unref, watch } from '@vue/composition-api'
 import { checkMobile } from '~/hooks/breakpoint.ts'
 
 export default defineComponent({
