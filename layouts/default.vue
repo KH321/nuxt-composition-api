@@ -6,7 +6,7 @@ export default defineComponent({
   setup () {
     const isMobile = checkMobile()
     const items = [
-      { icon: 'home', title: 'Home' },
+      { icon: 'home', title: 'border' },
       { icon: 'app', title: 'app' }
     ]
     const drawer = reactive({
@@ -46,26 +46,24 @@ export default defineComponent({
       :mini-variant="drawer.mini"
       :temporary="isMobile && showDrawer"
     >
-      <v-list-item>
-        <v-list-item-title class="title">
-          Application
+      <v-list-item link>
+        <v-list-item-title class="title" @click="drawer.mini && (drawer.mini = !drawer.mini)">
+          CSS Playgrounds
         </v-list-item-title>
         <v-btn icon @click="drawer.mini = !drawer.mini">
           <v-icon>mdi-chevron-left</v-icon>
         </v-btn>
       </v-list-item>
-      <v-list dense>
+      <v-divider />
+      <v-list dense nav>
         <v-list-item
           v-for="item in items"
           :key="item.title"
           link
+          @click="drawer.mini && (drawer.mini = !drawer.mini)"
         >
-          <v-list-item-icon @click="drawer.mini && (drawer.mini = !drawer.mini)">
-            <v-icon>mdi-arrow-left</v-icon>
-          </v-list-item-icon>
-
           <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <v-list-item-title class="list-title" v-text="item.title" />
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -87,4 +85,7 @@ export default defineComponent({
 </template>
 
 <style>
+.list-title {
+  font-size: 1rem !important;
+}
 </style>
