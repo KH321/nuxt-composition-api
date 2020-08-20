@@ -6,8 +6,8 @@ export default defineComponent({
   setup () {
     const isMobile = checkMobile()
     const items = [
-      { icon: 'home', title: 'border' },
-      { icon: 'app', title: 'app' }
+      { title: 'border' },
+      { title: 'app' }
     ]
     const drawer = reactive({
       mini: false,
