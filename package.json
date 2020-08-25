@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "d": "nuxt",
-    "dev": "nuxt-ts",
+    "dev": "PORT=3333 nuxt-ts",
     "build": "nuxt-ts build",
     "start": "nuxt-ts start",
     "export": "nuxt-ts export",

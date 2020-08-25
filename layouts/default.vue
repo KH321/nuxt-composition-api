@@ -1,13 +1,14 @@
 <script lang="ts">
 import { computed, defineComponent, reactive, unref, watch } from '@vue/composition-api'
 import { checkMobile } from '~/hooks/breakpoint.ts'
+import { properties } from '~/utils/constants/property'
 
 export default defineComponent({
   setup () {
     const isMobile = checkMobile()
     const items = [
-      { title: 'border' },
-      { title: 'app' }
+      'border',
+      'app'
     ]
     const drawer = reactive({
       mini: false,
@@ -27,8 +28,9 @@ export default defineComponent({
     )
     return {
       drawer,
-      items,
       isMobile,
+      items,
+      properties,
       showDrawer
     }
   }
@@ -57,13 +59,13 @@ export default defineComponent({
       <v-divider />
       <v-list dense nav>
         <v-list-item
-          v-for="item in items"
-          :key="item.title"
+          v-for="(item, i) in properties"
+          :key="i"
           link
           @click="drawer.mini && (drawer.mini = !drawer.mini)"
         >
           <v-list-item-content>
-            <v-list-item-title class="list-title" v-text="item.title" />
+            <v-list-item-title class="list-title" v-text="item" />
           </v-list-item-content>
         </v-list-item>
       </v-list>
